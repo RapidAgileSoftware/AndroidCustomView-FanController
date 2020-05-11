@@ -32,6 +32,9 @@
         android:layout_marginLeft="@dimen/default_margin"
         android:layout_marginRight="@dimen/default_margin"
         android:layout_marginTop="@dimen/default_margin"
+        app:fanColor1="#07A70C"
+        app:fanColor2="#E7E71B"
+        app:fanColor3="#ED3E1F"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

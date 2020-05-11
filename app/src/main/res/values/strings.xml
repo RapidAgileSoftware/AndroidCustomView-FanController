@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">CustomFanController</string>
-    <string name="fan_control">Fan Control</string>
+    <string name="app_name">Ragga Fan Controller</string>
+    <string name="fan_control">Tap me!</string>
     <string name="fan_off">off</string>
     <string name="fan_low">1</string>
     <string name="fan_medium">2</string>

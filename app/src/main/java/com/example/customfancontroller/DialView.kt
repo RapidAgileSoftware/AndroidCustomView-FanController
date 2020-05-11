@@ -3,7 +3,6 @@ package com.example.customfancontroller
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import kotlin.math.cos
 import kotlin.math.min
@@ -14,7 +13,14 @@ private enum class FanSpeed(val label:Int){
     OFF(R.string.fan_off),
     LOW(R.string.fan_low),
     MEDIUM(R.string.fan_medium),
-    High(R.string.fan_high)
+    HIGH(R.string.fan_high);
+
+    fun next() = when(this){
+        OFF -> LOW
+        LOW ->MEDIUM
+        MEDIUM -> HIGH
+        HIGH -> OFF
+    }
 }
 private const val RADIUS_OFFSET_LABEL = 30
 private const val RADIUS_OFFSET_INDICATOR = -35
@@ -38,6 +44,22 @@ class DialView @JvmOverloads constructor(
         textAlign = Paint.Align.CENTER
         textSize = 55.0f
         typeface = Typeface.create("", Typeface.BOLD)
+    }
+
+    init {
+        isClickable = true
+    }
+    // implement click action
+    override fun performClick(): Boolean {
+        // enables accessibility events and onClick Listener
+        if(super.performClick()) return true
+        // implement next fan speed
+        fanSpeed = fanSpeed.next()
+        // holds the current speed description
+        contentDescription = resources.getString(fanSpeed.label)
+        // trigger invalidate to redraw view
+        invalidate()
+        return true
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
